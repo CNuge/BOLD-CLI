@@ -1,4 +1,6 @@
 # goBOLDly
+## possible good names: BOLD-query
+## command line tool for interfacing with the BOLD data API
 
 Using this as a starting point:
 
