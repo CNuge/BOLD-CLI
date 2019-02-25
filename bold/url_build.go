@@ -17,18 +17,25 @@ var valid_dict = map[string][]string{
 
 // take a paramater specified and check that it is a valid paramater
 // for the given 
-func validateParam(param string, data_type string ) (bool, error) {
+func validateParam(param string, data_type string ) error {
 
 	for _, i := range valid_dict[data_type]{
 		if i == param {
-			return true, nil
+			return nil
 		}
 	}
 
 	err := fmt.Sprintf("Error! \"%v\" is not a valid paramater for BOLD query of type: %v", param, data_type)
 
-	return false, err
+	return err
 }
+
+func URLify(s string) string {
+	return strings.Replace(s, " ", "%20", -1)
+}
+
+//TODO:
+// Fill spaces in any params below with %20
 
 
 // take the data type and a map of all the url component paramaters
@@ -53,14 +60,17 @@ func BoldURL(data_type string, params map[string]string) string {
 
 	url_params := []string
 
+	// iterate through the alloted params, make sure they are valid, 
+	// if so then build the components of the url
 	for k , v := range params {
 
-		_, err := validateParams(k, data_type)
+		err := validateParams(k, data_type)
 		if err != nil{
 			log.Fatal(err)
 		}
 
-		param_str := fmt.Sprintf("%v=%v", k , v) 
+		// here sub any spaces in v with %20 using URLify
+		param_str := fmt.Sprintf("%v=%v", k , URLify(v)) 
 
 		url_params = append(url_params, param_str)
 	}
