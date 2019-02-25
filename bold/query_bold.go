@@ -1,6 +1,5 @@
 package bold
 
-
 import (
 	"fmt"
 	"io"
@@ -10,7 +9,6 @@ import (
 	"os"
 	"strings"
 )
-
 
 // change the input to a url built by the url_build functions...
 // this way its general so we can do fasta or the other data types
