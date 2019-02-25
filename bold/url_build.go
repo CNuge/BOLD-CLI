@@ -5,16 +5,29 @@ import (
 	"strings"
 )
 
+var valid_dict = map[string][]string{
+	"summary" : []string{"taxon" ,"ids", "bin", "container", "institutions", "researchers", "geo", "dataType", "format"}  ,
+	"specimen": []string{"taxon" ,"ids", "bin", "container", "institutions", "researchers", "geo", "format"} ,
+	"sequence": []string{"taxon" ,"ids", "bin", "container", "institutions", "researchers", "geo"},
+	"combined": []string{"taxon" ,"ids", "bin", "container", "institutions", "researchers", "geo", "format", "marker"},
+	"trace":  []string{"taxon" ,"ids", "bin", "container", "institutions", "researchers", "geo", "format", "marker"},
+}
+
+
+
 // take a paramater specified and check that it is a valid paramater
 // for the given 
-func validateParam(param string, data_type string) (bool, error) {
+func validateParam(param string, data_type string ) (bool, error) {
 
-	// check if the param is in the valid inputs for the specified data_type
-	// if so, return true, nil
-	// if not return an error saying that:
-	//  'param' not supported for BOLD query of type: 'data_type'
+	for _, i := range valid_dict[data_type]{
+		if i == param {
+			return true, nil
+		}
+	}
 
+	err := fmt.Sprintf("Error! \"%v\" is not a valid paramater for BOLD query of type: %v", param, data_type)
 
+	return false, err
 }
 
 
@@ -42,7 +55,7 @@ func BoldURL(data_type string, params map[string]string) string {
 
 	for k , v := range params {
 
-		_, err:= validateParams(k, data_type)
+		_, err := validateParams(k, data_type)
 		if err != nil{
 			log.Fatal(err)
 		}
