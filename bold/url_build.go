@@ -1,21 +1,7 @@
 package bold
 
-/*
-Change to make:
-have the cli be able to take multiple arguments for each of the params
-
-current:
-BoldURL(data_type string, params map[string]string)
-change to:
-BoldURL(data_type string, params map[string][]string) //list of strings
-// apply urlString to each of the strings in the slice, then join the slice
-// using the | character.
-
-
-
-
-*/
-
+//Description of package
+//
 
 import (
 	"fmt"
@@ -52,7 +38,7 @@ func urlString(s string) string {
 // Take the data type and a map of all the url component paramaters
 // validates that the data type and the map paramaters are allowed
 // in combination for the bold data retrieval type
-func BoldURL(data_type string, params map[string]string) string {
+func BoldURL(data_type string, params map[string][]string) string {
 
 	base := "http://www.boldsystems.org/index.php/API_Public/"
 	url_dtype := "not_specified"
@@ -69,6 +55,11 @@ func BoldURL(data_type string, params map[string]string) string {
 		url_dtype = "trace?"
 	}
 
+	if url_dtype == "not_specified"{
+		err := "You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace"
+		log.Fatal(err)
+	}
+
 	url_params := []string{}
 
 	// iterate through the alloted params, make sure they are valid,
@@ -80,8 +71,11 @@ func BoldURL(data_type string, params map[string]string) string {
 			log.Fatal(err)
 		}
 
+		// if multiple values passed for the param, join them together with a "|"
+		joined_vals := strings.Join(v, "|")
+
 		// here sub any spaces in v with %20 using urlString
-		param_str := fmt.Sprintf("%v=%v", k, urlString(v))
+		param_str := fmt.Sprintf("%v=%v", k, urlString())
 
 		url_params = append(url_params, param_str)
 	}

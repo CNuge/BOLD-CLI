@@ -101,28 +101,6 @@ func main(){
 	// retrieve the data, write to file
 	bold.QueryToFile(url, *outputPtr)
 
-	/*
-	These are the other accepted args:
-
-	// Take in a comma delimited list of arguments for each or a single filename
-	// that directs to a \n delimited list of values for the param
-
-	"taxon", 
-	"ids", 
-	"bin", 
-	"container", 
-	"institutions", 
-	"researchers", 
-	"geo", 
-	"dataType", 
-	"format"
-
-	need cli flags for each of them that can accept a string, file or pipe sep pair of values.
-
-	*/
-
-
-
 }
 
 

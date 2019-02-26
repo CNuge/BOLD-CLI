@@ -41,10 +41,10 @@ func TestUrlParamValidate(t *testing.T) {
 
 func TestBoldUrl(t *testing.T) {
 
-	var URL1_components = map[string]string{
-		"taxon":        "Chordata",
-		"geo":          "Florida",
-		"institutions": "Smithsonian Institution",
+	var URL1_components = map[string][]string{
+		"taxon":        []string{"Chordata"},
+		"geo":          []string{"Florida"},
+		"institutions": []string{"Smithsonian Institution"},
 	}
 
 	expected_URL1 := "http://www.boldsystems.org/index.php/API_Public/sequence?taxon=Chordata&geo=Florida&institutions=Smithsonian%20Institution"
@@ -55,9 +55,9 @@ func TestBoldUrl(t *testing.T) {
 	}
 
 	var URL2_components = map[string]string{
-		"taxon":  "Aves",
-		"geo":    "Costa Rica",
-		"format": "tsv",
+		"taxon":  []string{"Aves"},
+		"geo":    []string{"Costa Rica"},
+		"format": []string{"tsv"},
 	}
 
 	expected_URL2 := "http://www.boldsystems.org/index.php/API_Public/specimen?taxon=Aves&geo=Costa%20Rica&format=tsv"
@@ -65,6 +65,19 @@ func TestBoldUrl(t *testing.T) {
 
 	if reflect.DeepEqual(expected_URL2, built_URL2) != true {
 		t.Errorf("URL 2 did not match expected!\nobserved: %v\nexpected: %v", expected_URL2, built_URL2)
+	}
+
+	var URL3_components = map[string]string{
+		"taxon":  []string{"Aves","Reptilia"},
+		"geo":    []string{"Florida"},
+		"format": []string{"Smithsonian Institution"},
+	}
+
+	expected_URL3 := "http://www.boldsystems.org/index.php/API_Public/sequence?taxon=Aves|Reptilia&geo=Florida&institutions=Smithsonian%20Institution"
+	built_URL3 := BoldURL("sequence", URL3_components)
+	
+	if reflect.DeepEqual(expected_URL2, built_URL2) != true {
+		t.Errorf("URL 3 did not match expected!\nobserved: %v\nexpected: %v", expected_URL3, built_URL3)
 	}
 
 }
