@@ -81,3 +81,5 @@ func TestBoldUrl(t *testing.T) {
 	}
 
 }
+
+// need a test for QueryToFile
