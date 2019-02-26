@@ -1,5 +1,22 @@
 package bold
 
+/*
+Change to make:
+have the cli be able to take multiple arguments for each of the params
+
+current:
+BoldURL(data_type string, params map[string]string)
+change to:
+BoldURL(data_type string, params map[string][]string) //list of strings
+// apply urlString to each of the strings in the slice, then join the slice
+// using the | character.
+
+
+
+
+*/
+
+
 import (
 	"fmt"
 	"strings"
