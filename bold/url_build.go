@@ -14,7 +14,7 @@ var valid_dict = map[string][]string{
 }
 
 // take a paramater specified and check that it is a valid paramater
-// for the given
+// for the given data type
 func validateParam(param string, data_type string) error {
 
 	for _, i := range valid_dict[data_type] {
@@ -32,10 +32,7 @@ func urlString(s string) string {
 	return strings.Replace(s, " ", "%20", -1)
 }
 
-//TODO:
-// Fill spaces in any params below with %20
-
-// take the data type and a map of all the url component paramaters
+// Take the data type and a map of all the url component paramaters
 // validates that the data type and the map paramaters are allowed
 // in combination for the bold data retrieval type
 func BoldURL(data_type string, params map[string]string) string {

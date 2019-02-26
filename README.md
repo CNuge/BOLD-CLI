@@ -1,6 +1,5 @@
-# goBOLDly
-## possible good names: BOLD-query
-## command line tool for interfacing with the BOLD data API
+# BOLD-CLI
+## Command line interface for the retrieval of data from http://www.boldsystems.org
 
 Using this as a starting point:
 
