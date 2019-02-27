@@ -1,9 +1,9 @@
 package bold
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
+	"errors"
 )
 
 func TestUrlParamValidate(t *testing.T) {
@@ -14,13 +14,13 @@ func TestUrlParamValidate(t *testing.T) {
 	test_sequence_good := "bin"
 	test_sequence_bad := "format"
 
-	t_sum_good_out := validateParam("summary", test_summary_good)
-	t_sum_bad_out := validateParam("summary", test_summary_bad)
-	t_sum_bad_expected := "Error! \"marker\" is not a valid paramater for BOLD query of type: summary"
+	t_sum_good_out := validateParam(test_summary_good, "summary")
+	t_sum_bad_out := validateParam(test_summary_bad, "summary")
+	t_sum_bad_expected := errors.New("Error! \"marker\" is not a valid paramater for BOLD query of type: summary")
 
-	t_seq_good_out := validateParam("sequence", test_sequence_good)
-	t_seq_bad_out := validateParam("sequence", test_sequence_bad)
-	t_seq_bad_expected := "Error! \"format\" is not a valid paramater for BOLD query of type: sequence"
+	t_seq_good_out := validateParam(test_sequence_good, "sequence")
+	t_seq_bad_out := validateParam(test_sequence_bad, "sequence")
+	t_seq_bad_expected := errors.New("Error! \"format\" is not a valid paramater for BOLD query of type: sequence")
 
 	if reflect.DeepEqual(t_sum_good_out, nil) != true {
 		t.Errorf("URL param validation of combo: summary, %v incorrectly returned an error:\n %v ", test_summary_good, t_sum_good_out)
@@ -54,7 +54,7 @@ func TestBoldUrl(t *testing.T) {
 		t.Errorf("URL 1 did not match expected!\nobserved: %v\nexpected: %v", expected_URL1, built_URL1)
 	}
 
-	var URL2_components = map[string]string{
+	var URL2_components = map[string][]string{
 		"taxon":  []string{"Aves"},
 		"geo":    []string{"Costa Rica"},
 		"format": []string{"tsv"},
@@ -67,16 +67,16 @@ func TestBoldUrl(t *testing.T) {
 		t.Errorf("URL 2 did not match expected!\nobserved: %v\nexpected: %v", expected_URL2, built_URL2)
 	}
 
-	var URL3_components = map[string]string{
+	var URL3_components = map[string][]string{
 		"taxon":  []string{"Aves","Reptilia"},
 		"geo":    []string{"Florida"},
-		"format": []string{"Smithsonian Institution"},
+		"institutions": []string{"Smithsonian Institution"},
 	}
 
 	expected_URL3 := "http://www.boldsystems.org/index.php/API_Public/sequence?taxon=Aves|Reptilia&geo=Florida&institutions=Smithsonian%20Institution"
 	built_URL3 := BoldURL("sequence", URL3_components)
 	
-	if reflect.DeepEqual(expected_URL2, built_URL2) != true {
+	if reflect.DeepEqual(expected_URL3, built_URL3) != true {
 		t.Errorf("URL 3 did not match expected!\nobserved: %v\nexpected: %v", expected_URL3, built_URL3)
 	}
 

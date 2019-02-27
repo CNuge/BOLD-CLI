@@ -1,13 +1,10 @@
 package bold
 
 import (
-	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
 // change the input to a url built by the url_build functions...

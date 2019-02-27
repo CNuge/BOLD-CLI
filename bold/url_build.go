@@ -6,6 +6,8 @@ package bold
 import (
 	"fmt"
 	"strings"
+	"log"
+	"errors"
 )
 
 var valid_dict = map[string][]string{
@@ -28,7 +30,7 @@ func validateParam(param string, data_type string) error {
 
 	err := fmt.Sprintf("Error! \"%v\" is not a valid paramater for BOLD query of type: %v", param, data_type)
 
-	return err
+	return errors.New(err)
 }
 
 func urlString(s string) string {
@@ -66,7 +68,7 @@ func BoldURL(data_type string, params map[string][]string) string {
 	// if so then build the components of the url
 	for k, v := range params {
 
-		err := validateParams(k, data_type)
+		err := validateParam(k, data_type)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -75,14 +77,14 @@ func BoldURL(data_type string, params map[string][]string) string {
 		joined_vals := strings.Join(v, "|")
 
 		// here sub any spaces in v with %20 using urlString
-		param_str := fmt.Sprintf("%v=%v", k, urlString())
+		param_str := fmt.Sprintf("%v=%v", k, urlString(joined_vals))
 
 		url_params = append(url_params, param_str)
 	}
 	// join all the params together
-	strings.Join(url_params, "&")
+	joined_params := strings.Join(url_params, "&")
 	// patch the three components together
-	url := []string{base, url_dtype, url_params}
+	url := []string{base, url_dtype, joined_params}
 	// return the url string
 	return strings.Join(url, "")
 
