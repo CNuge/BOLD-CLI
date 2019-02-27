@@ -19,8 +19,18 @@ go install github.com/CNuge/BOLD-CLI
 
 
 example usage:
-./bold-cli -q specimen -o test2.tsv -taxon ./example_data/taxon_test.txt -geo Florida -format tsv
-
+- using command line arguments
+```
+bold-cli -q specimen -o test.tsv -taxon Aves -geo Florida -format tsv
+```
+- using multiple arguments for one paramater from command line
+```
+bold-cli -q specimen -o test2.tsv -taxon Aves,Reptilia -geo Florida -format tsv
+```
+- using multiple arguments for one paramater via a text file
+```
+bold-cli -q specimen -o test3.tsv -taxon ./example_data/taxon_test.txt -geo Florida -format tsv
+```
 
 TODO:
 - need to catch erroneous combinations of paramaters on the input to aid the user.
