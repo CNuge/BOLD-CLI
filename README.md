@@ -1,25 +1,38 @@
 # BOLD-CLI
-## Command line interface for the retrieval of data from http://www.boldsystems.org
+## ** UNDER CONSTRUCTION **
+## A command line interface for data retrieval of from the barcode of life database
+## http://www.boldsystems.org
 
-Using this as a starting point:
+
+Uses the BOLD API as a starting point:
 
 http://www.boldsystems.org/index.php/resources/api?type=webservices
 
-Write a go program that can build the requsite URL for a cmd line input of a taxonomic designation
-or an ID or BIN and then write the information to a fasta file.
-- this is basically an extension of go-Fasta... so use that as a starting point for designing
-the input/output, download and command line interfaces.
-	-take either a list of names/ids as input, or read them from a file like with go-fasta
-- include the necessary unit tests, document it and then put it up on github in full.
-- extend the functionality to download the other data types as well
-	- summary
-	- specimen 
-- have ability to name the output file 
--interface with the fasta package of go-fasta in order to add summary/
+This program lets you download sequence and summary data from the barcode of life database, directly from the command line.
 
-- with tested verion, add a travis.yml file
-- add a godoc page, make sure the functions are well documented.
-- set it up locally via go get/go install.
-- use it to download sequences for all of the different kingdoms, these can be utilized as 
-inputs for DAPR transition matrix population.
- 
+## Installation
+via go:
+```
+go get github.com/CNuge/BOLD-CLI
+go install github.com/CNuge/BOLD-CLI
+```
+
+
+example usage:
+./bold-cli -q specimen -o test2.tsv -taxon ./example_data/taxon_test.txt -geo Florida -format tsv
+
+
+TODO:
+- need to catch erroneous combinations of paramaters on the input to aid the user.
+	i.e.
+	this works:
+	./bold-cli -q specimen -o test.tsv -taxon Aves -geo Florida -format tsv
+	but this doesn't:
+	./bold-cli -q summary -o test.tsv -taxon Aves -geo Florida -format tsv
+
+	not because the program is wrong... but because this isn't a valid data format
+	for the summary option.
+- add documentation for the command line flags
+- write the readme file and add examples
+- add godocs
+- add travis.yml file
