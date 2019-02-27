@@ -1,6 +1,6 @@
 # BOLD-CLI
 ## ** UNDER CONSTRUCTION **
-## A command line interface for data retrieval of from the barcode of life database
+## A command line interface for data retrieval from the barcode of life database
 ## http://www.boldsystems.org
 [![Build Status](https://travis-ci.org/CNuge/BOLD-CLI.svg?branch=master)](https://travis-ci.org/CNuge/BOLD-CLI)	[![GoDoc](https://godoc.org/github.com/CNuge/BOLD-CLI/bold?status.svg)](https://godoc.org/github.com/CNuge/BOLD-CLI/bold)
 
@@ -11,7 +11,8 @@ http://www.boldsystems.org/index.php/resources/api?type=webservices
 This program lets you download sequence and summary data from the barcode of life database, directly from the command line.
 
 ## Installation
-via go:
+
+Install via go:
 ```
 go get github.com/CNuge/BOLD-CLI
 go install github.com/CNuge/BOLD-CLI
@@ -44,4 +45,4 @@ TODO:
 	for the summary option.
 - add documentation for the command line flags
 - write the readme file and add examples
-- add godocs
+- add godocs detail
