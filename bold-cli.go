@@ -5,7 +5,7 @@ BOLD-CLI: a command line interface for data retrieval from http://www.boldsystem
 */
 
 import (
-	"./bold" // switch this to the github import
+	"github.com/CNuge/BOLD-CLI/bold" // switch this to the github import
 	"errors"
 	"flag"
 	"io/ioutil"
