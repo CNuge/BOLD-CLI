@@ -1,15 +1,16 @@
 package main
+
 /*
 BOLD-CLI: a command line interface for data retrieval from http://www.boldsystems.org
 */
 
 import (
 	"./bold" // switch this to the github import
+	"errors"
 	"flag"
-	"strings"
 	"io/ioutil"
 	"log"
-	"errors"
+	"strings"
 )
 
 // read in a file with a list of paramater values, each value should
@@ -21,7 +22,7 @@ func ReadValues(filename string) []string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	data := strings.Split(string(file), "\n")
 
 	// remove leading and trailing strings if they exist
@@ -35,7 +36,7 @@ func ReadValues(filename string) []string {
 	return data
 }
 
-func main(){
+func main() {
 
 	typePtr := flag.String("q", "__none__", "Query type. One of: summary, specimen, sequence, combined, trace")
 
@@ -57,9 +58,8 @@ func main(){
 
 	markerPtr := flag.String("marker", "__none__", "")
 
-
 	// parse the command line arguments
-	flag.Parse()	
+	flag.Parse()
 
 	//parse the flags for multiple arguments
 	if *typePtr == "__none__" {
@@ -75,16 +75,16 @@ func main(){
 	passed_params := make(map[string][]string)
 
 	//all of the paramaters of the argument parser
-	var all_params = map[string]string{"taxon" : *taxonPtr, 
-										"bin" : *binPtr, 
-										"container" : *containerPtr, 
-										"researchers": *researchersPtr, 
-										"geo" : *geoPtr, 
-										"dataType": *dataTypePtr, 
-										"format" : *formatPtr, 
-										"marker" : *markerPtr}
+	var all_params = map[string]string{"taxon": *taxonPtr,
+		"bin":         *binPtr,
+		"container":   *containerPtr,
+		"researchers": *researchersPtr,
+		"geo":         *geoPtr,
+		"dataType":    *dataTypePtr,
+		"format":      *formatPtr,
+		"marker":      *markerPtr}
 
-	// iterate through the passed params 
+	// iterate through the passed params
 	for k, v := range all_params {
 		if v != "__none__" {
 			if len(strings.Split(v, ".")) > 1 {
@@ -93,7 +93,7 @@ func main(){
 				passed_params[k] = passed_vals
 			} else {
 				passed_vals := strings.Split(v, ",")
-				passed_params[k] = passed_vals				
+				passed_params[k] = passed_vals
 			}
 		}
 	}
@@ -105,8 +105,3 @@ func main(){
 	bold.QueryToFile(url, *outputPtr)
 
 }
-
-
-
-
-
