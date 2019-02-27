@@ -1,9 +1,9 @@
 package bold
 
 import (
+	"errors"
 	"reflect"
 	"testing"
-	"errors"
 )
 
 func TestUrlParamValidate(t *testing.T) {
@@ -51,7 +51,7 @@ func TestBoldUrl(t *testing.T) {
 	built_URL1 := BoldURL("sequence", URL1_components)
 
 	if reflect.DeepEqual(expected_URL1, built_URL1) != true {
-		t.Errorf("URL 1 did not match expected!\nobserved: %v\nexpected: %v", built_URL1, expected_URL1 )
+		t.Errorf("URL 1 did not match expected!\nobserved: %v\nexpected: %v", built_URL1, expected_URL1)
 	}
 
 	var URL2_components = map[string][]string{
@@ -68,14 +68,14 @@ func TestBoldUrl(t *testing.T) {
 	}
 
 	var URL3_components = map[string][]string{
-		"taxon":  []string{"Aves","Reptilia"},
-		"geo":    []string{"Florida"},
+		"taxon":        []string{"Aves", "Reptilia"},
+		"geo":          []string{"Florida"},
 		"institutions": []string{"Smithsonian Institution"},
 	}
 
 	expected_URL3 := "http://www.boldsystems.org/index.php/API_Public/sequence?geo=Florida&institutions=Smithsonian%20Institution&taxon=Aves|Reptilia"
 	built_URL3 := BoldURL("sequence", URL3_components)
-	
+
 	if reflect.DeepEqual(expected_URL3, built_URL3) != true {
 		t.Errorf("URL 3 did not match expected!\nobserved: %v\nexpected: %v", built_URL3, expected_URL3)
 	}

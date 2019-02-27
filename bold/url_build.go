@@ -4,11 +4,11 @@ package bold
 //
 
 import (
-	"fmt"
-	"strings"
-	"log"
 	"errors"
+	"fmt"
+	"log"
 	"sort"
+	"strings"
 )
 
 var valid_dict = map[string][]string{
@@ -58,7 +58,7 @@ func BoldURL(data_type string, params map[string][]string) string {
 		url_dtype = "trace?"
 	}
 
-	if url_dtype == "not_specified"{
+	if url_dtype == "not_specified" {
 		err := "You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace"
 		log.Fatal(err)
 	}
@@ -67,11 +67,10 @@ func BoldURL(data_type string, params map[string][]string) string {
 
 	// iterate through the alloted params, make sure they are valid,
 	// if so then build the components of the url
-	
 
 	// get a slice of the params, sort in alphabetical order
 	sorted_k := []string{}
-	for k, _ := range params{
+	for k, _ := range params {
 		sorted_k = append(sorted_k, k)
 	}
 	sort.Strings(sorted_k)
