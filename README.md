@@ -4,6 +4,8 @@
 ## http://www.boldsystems.org
 [![Build Status](https://travis-ci.org/CNuge/BOLD-CLI.svg?branch=master)](https://travis-ci.org/CNuge/BOLD-CLI)
 
+[![GoDoc](https://godoc.org/github.com/CNuge/BOLD-CLI/bold?status.svg)](https://godoc.org/github.com/CNuge/BOLD-CLI/bold)
+
 Uses the BOLD API as a starting point:
 
 http://www.boldsystems.org/index.php/resources/api?type=webservices
