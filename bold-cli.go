@@ -4,12 +4,12 @@ BOLD-CLI: a command line interface for data retrieval from http://www.boldsystem
 */
 
 import (
-	"bold" // switch this to the github import
+	"./bold" // switch this to the github import
 	"flag"
-	"fmt"
 	"strings"
 	"io/ioutil"
 	"log"
+	"errors"
 )
 
 // read in a file with a list of paramater values, each value should
@@ -21,11 +21,14 @@ func ReadValues(filename string) []string {
 	if err != nil {
 		log.Fatal(err)
 	}
+	
 	data := strings.Split(string(file), "\n")
+
 	// remove leading and trailing strings if they exist
 	if data[len(data)-1] == "" {
 		data = data[:len(data)-1]
 	}
+
 	if data[0] == "" {
 		data = data[1:]
 	}
@@ -60,12 +63,12 @@ func main(){
 
 	//parse the flags for multiple arguments
 	if *typePtr == "__none__" {
-		err := "You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace"
+		err := errors.New("You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace")
 		log.Fatal(err)
 	}
 
 	if *outputPtr == "__none__" {
-		err := "You must specify an output file name."
+		err := errors.New("You must specify an output file name.")
 		log.Fatal(err)
 	}
 
@@ -87,8 +90,8 @@ func main(){
 			if len(strings.Split(v, ".")) > 1 {
 				// read the data in from a file
 				passed_vals := ReadValues(v)
-				passed_params[k] = 
-			} else{
+				passed_params[k] = passed_vals
+			} else {
 				passed_vals := strings.Split(v, ",")
 				passed_params[k] = passed_vals				
 			}
@@ -96,7 +99,7 @@ func main(){
 	}
 
 	// build the query url
-	url := bold.BoldURL(*typePtr, )
+	url := bold.BoldURL(*typePtr, passed_params)
 
 	// retrieve the data, write to file
 	bold.QueryToFile(url, *outputPtr)
