@@ -22,6 +22,8 @@ go install github.com/CNuge/BOLD-CLI
 example usage:
 - using command line arguments
 ```
+bold-cli -o salp_barcodes.fasta -q sequence -taxon salvelinus alpinus
+
 bold-cli -q specimen -o test.tsv -taxon Aves -geo Florida -format tsv
 ```
 - using multiple arguments for one paramater from command line
