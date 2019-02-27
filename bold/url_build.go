@@ -8,6 +8,7 @@ import (
 	"strings"
 	"log"
 	"errors"
+	"sort"
 )
 
 var valid_dict = map[string][]string{
@@ -66,12 +67,26 @@ func BoldURL(data_type string, params map[string][]string) string {
 
 	// iterate through the alloted params, make sure they are valid,
 	// if so then build the components of the url
-	for k, v := range params {
+	
+
+	// get a slice of the params, sort in alphabetical order
+	sorted_k := []string{}
+	for k, _ := range params{
+		sorted_k = append(sorted_k, k)
+	}
+	sort.Strings(sorted_k)
+
+	// iterate through the sorted keys, validate them and call the corresponding
+	// values prior to constructing the part of the url
+	for _, k := range sorted_k {
 
 		err := validateParam(k, data_type)
 		if err != nil {
 			log.Fatal(err)
 		}
+
+		// call the value
+		v := params[k]
 
 		// if multiple values passed for the param, join them together with a "|"
 		joined_vals := strings.Join(v, "|")

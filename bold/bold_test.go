@@ -47,11 +47,11 @@ func TestBoldUrl(t *testing.T) {
 		"institutions": []string{"Smithsonian Institution"},
 	}
 
-	expected_URL1 := "http://www.boldsystems.org/index.php/API_Public/sequence?taxon=Chordata&geo=Florida&institutions=Smithsonian%20Institution"
+	expected_URL1 := "http://www.boldsystems.org/index.php/API_Public/sequence?geo=Florida&institutions=Smithsonian%20Institution&taxon=Chordata"
 	built_URL1 := BoldURL("sequence", URL1_components)
 
 	if reflect.DeepEqual(expected_URL1, built_URL1) != true {
-		t.Errorf("URL 1 did not match expected!\nobserved: %v\nexpected: %v", expected_URL1, built_URL1)
+		t.Errorf("URL 1 did not match expected!\nobserved: %v\nexpected: %v", built_URL1, expected_URL1 )
 	}
 
 	var URL2_components = map[string][]string{
@@ -60,11 +60,11 @@ func TestBoldUrl(t *testing.T) {
 		"format": []string{"tsv"},
 	}
 
-	expected_URL2 := "http://www.boldsystems.org/index.php/API_Public/specimen?taxon=Aves&geo=Costa%20Rica&format=tsv"
+	expected_URL2 := "http://www.boldsystems.org/index.php/API_Public/specimen?format=tsv&geo=Costa%20Rica&taxon=Aves"
 	built_URL2 := BoldURL("specimen", URL2_components)
 
 	if reflect.DeepEqual(expected_URL2, built_URL2) != true {
-		t.Errorf("URL 2 did not match expected!\nobserved: %v\nexpected: %v", expected_URL2, built_URL2)
+		t.Errorf("URL 2 did not match expected!\nobserved: %v\nexpected: %v", built_URL2, expected_URL2)
 	}
 
 	var URL3_components = map[string][]string{
@@ -73,11 +73,11 @@ func TestBoldUrl(t *testing.T) {
 		"institutions": []string{"Smithsonian Institution"},
 	}
 
-	expected_URL3 := "http://www.boldsystems.org/index.php/API_Public/sequence?taxon=Aves|Reptilia&geo=Florida&institutions=Smithsonian%20Institution"
+	expected_URL3 := "http://www.boldsystems.org/index.php/API_Public/sequence?geo=Florida&institutions=Smithsonian%20Institution&taxon=Aves|Reptilia"
 	built_URL3 := BoldURL("sequence", URL3_components)
 	
 	if reflect.DeepEqual(expected_URL3, built_URL3) != true {
-		t.Errorf("URL 3 did not match expected!\nobserved: %v\nexpected: %v", expected_URL3, built_URL3)
+		t.Errorf("URL 3 did not match expected!\nobserved: %v\nexpected: %v", built_URL3, expected_URL3)
 	}
 
 }
