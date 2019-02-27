@@ -2,7 +2,7 @@
 ## ** UNDER CONSTRUCTION **
 ## A command line interface for data retrieval of from the barcode of life database
 ## http://www.boldsystems.org
-
+[![Build Status](https://travis-ci.org/CNuge/BOLD-CLI.svg?branch=master)](https://travis-ci.org/CNuge/BOLD-CLI)
 
 Uses the BOLD API as a starting point:
 
@@ -45,4 +45,3 @@ TODO:
 - add documentation for the command line flags
 - write the readme file and add examples
 - add godocs
-- add travis.yml file
