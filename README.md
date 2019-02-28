@@ -12,9 +12,9 @@ This program lets you download sequence and summary data from the barcode of lif
 
 ## Installation
 
-// add compiled versions to repo, explain usage
+To use BOLD-CLI, download the executable file *COMING SOON* found in this repository corresponding to your operating system (Windows, Mac and Linux versions provided). Make sure the executable is located on your [PATH](https://en.wikipedia.org/wiki/PATH_(variable) or within your working directory and then you should be ready to roll. Test its working by running `bold-cli -h` from the command line/command prompt.
 
-If you have go installed on your computer as your GOPATH configured you can install from the command line:
+Or if you have go installed on your computer and your GOPATH is properly configured, you can install the program directly from the command line:
 ```
 go get github.com/CNuge/BOLD-CLI
 go install github.com/CNuge/BOLD-CLI
@@ -49,15 +49,16 @@ bold-cli -query sequence -taxon drosophila -print | grep -c "^>"
 ```
 
 TODO:
-- need to catch erroneous combinations of paramaters on the input to aid the user.
-	i.e.
-	this works:
-	./bold-cli -q specimen -o test.tsv -taxon Aves -geo Florida -format tsv
-	but this doesn't:
-	./bold-cli -q summary -o test.tsv -taxon Aves -geo Florida -format tsv
-
-	not because the program is wrong... but because this isn't a valid data format
-	for the summary option.
 - add documentation for the command line flags
 - write the readme file and add examples
 - add godocs detail
+
+bugs to fix:
+- if not params are passed, then the call of the program with no flags builds
+an empty file.
+	- have it check the passed params... if len(not_file_or_query) < 1
+	then throw an error saying you have to specify the data to get from bold. then list the options.
+
+- Compiling on windows and linux as well, as last step upload a compiled version of each, zipped and labelled.
+	- a version compiled on windows will work without go installed... so compile and ship
+	- or possibly do this: https://golang.org/doc/install/source#environment
