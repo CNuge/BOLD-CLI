@@ -5,7 +5,7 @@ BOLD-CLI: a command line interface for data retrieval from http://www.boldsystem
 */
 
 import (
-	"github.com/CNuge/BOLD-CLI/bold" 
+	"github.com/CNuge/BOLD-CLI/bold" // "./bold" 
 	"flag"
 	"io/ioutil"
 	"log"
@@ -54,14 +54,36 @@ func main() {
 
 	dataTypePtr := flag.String("dataType", "none", "")
 
-	formatPtr := flag.String("format", "none", "")
+	formatPtr := flag.String("format", "query_dependent", "The output file format. Different options available for different query types listed below. First listed option is the default\n"+
+								"summary: json, xml\n" +
+								"specimen: tsv, xml json, dwc\n" +
+								"sequence: fasta\n" +
+								"combined: tsv, xml json, dwc\n" +
+								"trace: tar\n" +)
 
 	markerPtr := flag.String("marker", "none", "")
+
+	ioPtr := flag.Bool("print", false, "If this flag is passed, instead of data being output to a file, the query will be returned to standard output.")
 
 	// parse the command line arguments
 	flag.Parse()
 
 	passed_params := make(map[string][]string)
+
+	if *formatPtr == "query_dependent"{
+		if *typePtr == "summary"{
+			*formatPtr = "json"
+		} else if *typePtr == "specimen"{
+			*formatPtr = "tsv"
+		} else if *typePtr == "sequence"{
+			*formatPtr = "none"
+		} else if *typePtr == "combined"{
+			*formatPtr = "tsv"
+		} else if *typePtr == "trace"{
+			*formatPtr = "none"
+		}	
+	}
+
 
 	//all of the paramaters of the argument parser
 	var all_params = map[string]string{"taxon": *taxonPtr,
@@ -90,7 +112,13 @@ func main() {
 	// build the query url
 	url := bold.BoldURL(*typePtr, passed_params)
 
-	// retrieve the data, write to file
-	bold.QueryToFile(url, *outputPtr)
+	if *ioPtr == true {
+		//pipe to stdout if the -print flag was passed
+		bold.QueryToIO(url)		
 
+	} else {
+		// retrieve the data, write to file
+		bold.QueryToFile(url, *outputPtr)	
+	}
+	
 }
