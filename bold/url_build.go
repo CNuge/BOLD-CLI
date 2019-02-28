@@ -29,7 +29,8 @@ func validateParam(param string, data_type string) error {
 		}
 	}
 
-	err := fmt.Sprintf("Error! \"%v\" is not a valid paramater for BOLD query of type: %v", param, data_type)
+	err := fmt.Sprintf("Error! \"%v\" is not a valid paramater for BOLD query of type: %v\n" +
+						"This flag should be omitted.", param, data_type)
 
 	return errors.New(err)
 }
