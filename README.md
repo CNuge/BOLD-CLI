@@ -12,14 +12,16 @@ This program lets you download sequence and summary data from the barcode of lif
 
 ## Installation
 
-Install via go:
+// add compiled versions to repo, explain usage
+
+If you have go installed on your computer as your GOPATH configured you can install from the command line:
 ```
 go get github.com/CNuge/BOLD-CLI
 go install github.com/CNuge/BOLD-CLI
 ```
 
 
-example usage:
+## Example usage:
 ```
 bold-cli -o salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
 
