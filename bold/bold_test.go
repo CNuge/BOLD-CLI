@@ -16,11 +16,11 @@ func TestUrlParamValidate(t *testing.T) {
 
 	t_sum_good_out := validateParam(test_summary_good, "summary")
 	t_sum_bad_out := validateParam(test_summary_bad, "summary")
-	t_sum_bad_expected := errors.New("Error! \"marker\" is not a valid paramater for BOLD query of type: summary")
+	t_sum_bad_expected := errors.New("Error! \"marker\" is not a valid paramater for BOLD query of type: summary\nThis flag should be omitted.")
 
 	t_seq_good_out := validateParam(test_sequence_good, "sequence")
 	t_seq_bad_out := validateParam(test_sequence_bad, "sequence")
-	t_seq_bad_expected := errors.New("Error! \"format\" is not a valid paramater for BOLD query of type: sequence")
+	t_seq_bad_expected := errors.New("Error! \"format\" is not a valid paramater for BOLD query of type: sequence\nThis flag should be omitted.")
 
 	if reflect.DeepEqual(t_sum_good_out, nil) != true {
 		t.Errorf("URL param validation of combo: summary, %v incorrectly returned an error:\n %v ", test_summary_good, t_sum_good_out)
