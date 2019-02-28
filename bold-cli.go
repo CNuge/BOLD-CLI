@@ -42,9 +42,11 @@ func main() {
 
 	outputPtr := flag.String("output", "bold_data.txt", "Output file name.")
 
-	taxonPtr := flag.String("taxon", "none", "")
+	taxonPtr := flag.String("taxon", "none", "Taxonomic designation. Returns all records from matching designation."+
+		"Valid taxonomic designations: phylum, class, order, family, subfamily, genus, and species"+
+		"Multiple taxa can be specified in a comma delimited list, or by passing a text file (with one taxon per line)")
 
-	idsPtr := flag.String("taxon", "none", "BOLD ID. Valid IDs are of types: Sample IDs, Process IDs, Museum IDs and Field IDs"+
+	idsPtr := flag.String("taxon", "none", "BOLD ID. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs."+
 			"Multiple IDs can be specified in a comma delimited list, or by passing a text file (with one ID per line)")
 
 	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs"+
