@@ -12,7 +12,7 @@ This program lets you download sequence and summary data from the barcode of lif
 
 ## Installation
 
-To use BOLD-CLI, download the executable file *COMING SOON* found in this repository corresponding to your operating system (Windows, Mac and Linux versions provided). Make sure the executable is located on your [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) or within your working directory and then you should be ready to roll. Test its working by running `bold-cli -h` from the command line/command prompt.
+To use BOLD-CLI, download the executable file (*COMING SOON*) in this repository for your operating system (Windows, Mac and Linux provided). Make sure the executable is located on your [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) or within your working directory and then you should be ready to roll. Test its working by running the command: `bold-cli -h` from the command line/command prompt.
 
 Or if you have go installed on your computer and your GOPATH is properly configured, you can install the program directly from the command line:
 ```
