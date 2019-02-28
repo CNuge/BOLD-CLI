@@ -5,8 +5,8 @@ BOLD-CLI: a command line interface for data retrieval from http://www.boldsystem
 */
 
 import (
-	"github.com/CNuge/BOLD-CLI/bold" // "./bold" 
 	"flag"
+	"github.com/CNuge/BOLD-CLI/bold" // "./bold"
 	"io/ioutil"
 	"log"
 	"strings"
@@ -32,7 +32,7 @@ func ReadValues(filename string) []string {
 	if data[0] == "" {
 		data = data[1:]
 	}
-	
+
 	return data
 }
 
@@ -55,11 +55,11 @@ func main() {
 	dataTypePtr := flag.String("dataType", "none", "")
 
 	formatPtr := flag.String("format", "query_dependent", "The output file format. Different options available for different query types listed below. First listed option is the default\n"+
-								"summary: json, xml\n" +
-								"specimen: tsv, xml json, dwc\n" +
-								"sequence: fasta\n" +
-								"combined: tsv, xml json, dwc\n" +
-								"trace: tar\n" +)
+		"summary: json, xml\n"+
+		"specimen: tsv, xml json, dwc\n"+
+		"sequence: fasta\n"+
+		"combined: tsv, xml json, dwc\n"+
+		"trace: tar\n")
 
 	markerPtr := flag.String("marker", "none", "")
 
@@ -70,20 +70,19 @@ func main() {
 
 	passed_params := make(map[string][]string)
 
-	if *formatPtr == "query_dependent"{
-		if *typePtr == "summary"{
+	if *formatPtr == "query_dependent" {
+		if *typePtr == "summary" {
 			*formatPtr = "json"
-		} else if *typePtr == "specimen"{
+		} else if *typePtr == "specimen" {
 			*formatPtr = "tsv"
-		} else if *typePtr == "sequence"{
+		} else if *typePtr == "sequence" {
 			*formatPtr = "none"
-		} else if *typePtr == "combined"{
+		} else if *typePtr == "combined" {
 			*formatPtr = "tsv"
-		} else if *typePtr == "trace"{
+		} else if *typePtr == "trace" {
 			*formatPtr = "none"
-		}	
+		}
 	}
-
 
 	//all of the paramaters of the argument parser
 	var all_params = map[string]string{"taxon": *taxonPtr,
@@ -114,11 +113,11 @@ func main() {
 
 	if *ioPtr == true {
 		//pipe to stdout if the -print flag was passed
-		bold.QueryToIO(url)		
+		bold.QueryToIO(url)
 
 	} else {
 		// retrieve the data, write to file
-		bold.QueryToFile(url, *outputPtr)	
+		bold.QueryToFile(url, *outputPtr)
 	}
-	
+
 }
