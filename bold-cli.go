@@ -5,8 +5,7 @@ BOLD-CLI: a command line interface for data retrieval from http://www.boldsystem
 */
 
 import (
-	"github.com/CNuge/BOLD-CLI/bold" // switch this to the github import
-	"errors"
+	"github.com/CNuge/BOLD-CLI/bold" 
 	"flag"
 	"io/ioutil"
 	"log"
@@ -25,7 +24,7 @@ func ReadValues(filename string) []string {
 
 	data := strings.Split(string(file), "\n")
 
-	// remove leading and trailing strings if they exist
+	// remove leading and trailing spaces if they exist
 	if data[len(data)-1] == "" {
 		data = data[:len(data)-1]
 	}
@@ -33,6 +32,7 @@ func ReadValues(filename string) []string {
 	if data[0] == "" {
 		data = data[1:]
 	}
+	
 	return data
 }
 
