@@ -4,11 +4,9 @@
 ## http://www.boldsystems.org
 [![Build Status](https://travis-ci.org/CNuge/BOLD-CLI.svg?branch=master)](https://travis-ci.org/CNuge/BOLD-CLI)	[![GoDoc](https://godoc.org/github.com/CNuge/BOLD-CLI/bold?status.svg)](https://godoc.org/github.com/CNuge/BOLD-CLI/bold)
 
-Uses the BOLD API as a starting point:
+## About
 
-http://www.boldsystems.org/index.php/resources/api?type=webservices
-
-This program lets you download sequence and summary data from the barcode of life database, directly from the command line.
+BOLD-CLI lets you download specimen and sequence data from the barcode of life database (BOLD) directly from the command line. BOLD-CLI interfaces with the database via the [BOLD API](http://www.boldsystems.org/index.php/resources/api?type=webservices) and allows you to obtain a local copies of data without needing to utilize [the public data portal](http://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records). The command line interface provides an efficient means of querying the database and also allows returned data to be directly piped (`|`) to other UNIX shell commands. 
 
 ## Installation
 
@@ -20,8 +18,8 @@ go get github.com/CNuge/BOLD-CLI
 go install github.com/CNuge/BOLD-CLI
 ```
 
-
 ## Example usage:
+
 ```
 bold-cli -o salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
 
@@ -62,3 +60,4 @@ an empty file.
 - Compiling on windows and linux as well, as last step upload a compiled version of each, zipped and labelled.
 	- a version compiled on windows will work without go installed... so compile and ship
 	- or possibly do this: https://golang.org/doc/install/source#environment
+
