@@ -38,13 +38,17 @@ func ReadValues(filename string) []string {
 
 func main() {
 
-	typePtr := flag.String("query", "combined", "Query type. One of: summary, specimen, sequence, combined, trace")
+	typePtr := flag.String("query", "combined", "BOLD query type: summary, specimen, sequence, combined, trace")
 
 	outputPtr := flag.String("output", "bold_data.txt", "Output file name.")
 
 	taxonPtr := flag.String("taxon", "none", "")
 
-	binPtr := flag.String("bin", "none", "")
+	idsPtr := flag.String("taxon", "none", "BOLD ID. Valid IDs are of types: Sample IDs, Process IDs, Museum IDs and Field IDs"+
+			"Multiple IDs can be specified in a comma delimited list, or by passing a text file (with one ID per line)")
+
+	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs"+
+			"Multiple markers can be specified in a comma delimited list, or by passing a text file (with one bin per line)")
 
 	containerPtr := flag.String("container", "none", "")
 
@@ -61,7 +65,9 @@ func main() {
 		"combined: tsv, xml json, dwc\n"+
 		"trace: tar\n")
 
-	markerPtr := flag.String("marker", "none", "")
+	markerPtr := flag.String("marker", "none", "Barcode marker: returns all specimen records that contain data for the specified barcode marker.\n"+
+		"Options include (but are not limited to): COI-5P, matK, rbcL"+
+		"Multiple markers can be specified in a comma delimited list.")
 
 	ioPtr := flag.Bool("print", false, "If this flag is passed, instead of data being output to a file, the query will be returned to standard output.")
 
@@ -86,6 +92,7 @@ func main() {
 
 	//all of the paramaters of the argument parser
 	var all_params = map[string]string{"taxon": *taxonPtr,
+		"ids":         *idsPtr,
 		"bin":         *binPtr,
 		"container":   *containerPtr,
 		"researchers": *researchersPtr,

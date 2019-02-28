@@ -41,9 +41,9 @@ bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.tx
 ```
 bold-cli -query specimen -taxon drosophila melanogaster  -print
 ```
--Example use of pipe functionality: Count number of drosophila sequences in the bold database
+- The `-print` flag can be added to a query to send data to standard output instead of Below is an example use of pipe functionality that counts the number of drosophila sequences in the bold database.
 ```
-bold-cli -query sequence -taxon drosophila -print | grep -c "^>"
+bold-cli -query sequence -taxon drosophila -marker COI-5P -print | grep -c "^>"
 ```
 
 TODO:
