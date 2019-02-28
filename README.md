@@ -6,7 +6,7 @@
 
 ## About
 
-BOLD-CLI lets you download specimen and sequence data from the barcode of life database (BOLD) directly from the command line. BOLD-CLI interfaces with the database via the [BOLD API](http://www.boldsystems.org/index.php/resources/api?type=webservices) and allows you to obtain a local copies of data without needing to utilize [the public data portal](http://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records). The command line interface provides an efficient means of querying the database and also allows returned data to be directly piped (`|`) to other UNIX shell commands. 
+BOLD-CLI lets you download specimen and sequence data from the barcode of life database (BOLD) directly from the command line. BOLD-CLI interfaces with the database via the [BOLD API](http://www.boldsystems.org/index.php/resources/api?type=webservices) and allows you to obtain local copies of data without needing to utilize [the public data portal](http://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records). The command line interface provides an efficient means of querying the database and also allows returned data to be directly piped to other UNIX shell commands. 
 
 ## Installation
 
@@ -41,7 +41,7 @@ bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.tx
 ```
 bold-cli -query specimen -taxon drosophila melanogaster  -print
 ```
--Example use of pip functionality: Count number of drosophila sequences in the bold database
+-Example use of pipe functionality: Count number of drosophila sequences in the bold database
 ```
 bold-cli -query sequence -taxon drosophila -print | grep -c "^>"
 ```

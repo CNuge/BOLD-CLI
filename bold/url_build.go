@@ -14,7 +14,7 @@ import (
 var valid_dict = map[string][]string{
 	"summary":  []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo", "dataType", "format"},
 	"specimen": []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo", "format"},
-	"sequence": []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo"},
+	"sequence": []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo", "marker"},
 	"combined": []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo", "format", "marker"},
 	"trace":    []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo", "format", "marker"},
 }
