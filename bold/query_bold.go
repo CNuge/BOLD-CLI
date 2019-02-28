@@ -34,7 +34,6 @@ func QueryToFile(url string, output string) error {
 	return nil
 }
 
-
 func QueryToIO(url string) {
 
 	// make the http request
@@ -43,7 +42,7 @@ func QueryToIO(url string) {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-	
+
 	// io.Copy(dst io.Writer, src io.Reader), copies from the Body to Stdout
 	io.Copy(os.Stdout, resp.Body)
 
