@@ -38,39 +38,28 @@ func ReadValues(filename string) []string {
 
 func main() {
 
-	typePtr := flag.String("q", "__none__", "Query type. One of: summary, specimen, sequence, combined, trace")
+	typePtr := flag.String("query", "combined", "Query type. One of: summary, specimen, sequence, combined, trace")
 
-	outputPtr := flag.String("o", "__none__", "Output file name.")
+	outputPtr := flag.String("output", "bold_data.txt", "Output file name.")
 
-	taxonPtr := flag.String("taxon", "__none__", "")
+	taxonPtr := flag.String("taxon", "none", "")
 
-	binPtr := flag.String("bin", "__none__", "")
+	binPtr := flag.String("bin", "none", "")
 
-	containerPtr := flag.String("container", "__none__", "")
+	containerPtr := flag.String("container", "none", "")
 
-	researchersPtr := flag.String("researchers", "__none__", "")
+	researchersPtr := flag.String("researchers", "none", "")
 
-	geoPtr := flag.String("geo", "__none__", "")
+	geoPtr := flag.String("geo", "none", "")
 
-	dataTypePtr := flag.String("dataType", "__none__", "")
+	dataTypePtr := flag.String("dataType", "none", "")
 
-	formatPtr := flag.String("format", "__none__", "")
+	formatPtr := flag.String("format", "none", "")
 
-	markerPtr := flag.String("marker", "__none__", "")
+	markerPtr := flag.String("marker", "none", "")
 
 	// parse the command line arguments
 	flag.Parse()
-
-	//parse the flags for multiple arguments
-	if *typePtr == "__none__" {
-		err := errors.New("You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace")
-		log.Fatal(err)
-	}
-
-	if *outputPtr == "__none__" {
-		err := errors.New("You must specify an output file name.")
-		log.Fatal(err)
-	}
 
 	passed_params := make(map[string][]string)
 
@@ -86,7 +75,7 @@ func main() {
 
 	// iterate through the passed params
 	for k, v := range all_params {
-		if v != "__none__" {
+		if v != "none" {
 			if len(strings.Split(v, ".")) > 1 {
 				// read the data in from a file
 				passed_vals := ReadValues(v)
