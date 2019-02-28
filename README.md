@@ -20,19 +20,30 @@ go install github.com/CNuge/BOLD-CLI
 
 
 example usage:
-- using command line arguments
 ```
-bold-cli -o salp_barcodes.fasta -q sequence -taxon salvelinus alpinus
+bold-cli -o salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
 
-bold-cli -q specimen -o test.tsv -taxon Aves -geo Florida -format tsv
+bold-cli -query specimen -output test.tsv -taxon Aves -geo Florida -format tsv
 ```
-- using multiple arguments for one paramater from command line
+- Default output is the combined summary and sequence data in tsv format.
 ```
-bold-cli -q specimen -o test2.tsv -taxon Aves,Reptilia -geo Florida -format tsv
+bold-cli -taxon Aves -geo Florida
 ```
-- using multiple arguments for one paramater via a text file
+- Can use multiple arguments for one paramater from command line, just comma delimit them.
 ```
-bold-cli -q specimen -o test3.tsv -taxon ./example_data/taxon_test.txt -geo Florida -format tsv
+bold-cli -query specimen -output test2.tsv -taxon Aves,Reptilia -geo Florida -format tsv
+```
+- Or use multiple arguments for one paramater by passing in a text file, with each option listed on a separate line.
+```
+bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.txt -geo Florida -format tsv
+```
+- Send results to standard output as opposed to files. Can then be piped to other things.
+```
+bold-cli -query specimen -taxon drosophila melanogaster  -print
+```
+-Example use of pip functionality: Count number of drosophila sequences in the bold database
+```
+bold-cli -query sequence -taxon drosophila -print | grep -c "^>"
 ```
 
 TODO:
