@@ -40,7 +40,7 @@ bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.tx
 ```
 bold-cli -query specimen -taxon drosophila melanogaster  -print
 ```
-- The `-print` flag can be added to a query to send data to standard output instead of Below is an example use of pipe functionality that counts the number of drosophila sequences in the bold database.
+- The `-print` flag can be added to a query to send data to standard output instead of to a file. Below is an example use of pipe functionality that counts the number of COI drosophila sequences in the bold database.
 ```
 bold-cli -query sequence -taxon drosophila -marker COI-5P -print | grep -c "^>"
 ```
@@ -49,12 +49,6 @@ TODO:
 - add documentation for the command line flags
 - write the readme file and add examples
 - add godocs detail
-
-bugs to fix:
-- if not params are passed, then the call of the program with no flags builds
-an empty file.
-	- have it check the passed params... if len(not_file_or_query) < 1
-	then throw an error saying you have to specify the data to get from bold. then list the options.
 
 - Compiling on windows and linux as well, as last step upload a compiled version of each, zipped and labelled.
 	- a version compiled on windows will work without go installed... so compile and ship
