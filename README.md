@@ -18,8 +18,7 @@ go get github.com/CNuge/BOLD-CLI
 go install github.com/CNuge/BOLD-CLI
 ```
 
-## Example usage:
-
+## Example usage
 ```
 bold-cli -o salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
 

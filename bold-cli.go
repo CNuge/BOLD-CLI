@@ -10,6 +10,7 @@ import (
 	"io/ioutil"
 	"log"
 	"strings"
+	"errors"
 )
 
 // read in a file with a list of paramater values, each value should
@@ -36,6 +37,22 @@ func ReadValues(filename string) []string {
 	return data
 }
 
+// make sure that at least one of the required paramaters was passed in by the user
+func PassedRequired(all_params map[string]string) error	{
+	required_params := []string{"ids", "bin", "container", "researchers", "geo", "marker"}
+
+	for _, p := range required_params{
+		if all_params[p] != "none" {
+			return nil
+		}
+	}
+
+	err := errors.New("Not enough information. You must specify at least one of the following paramaters:\n"+
+						"-ids -bin -container -researchers -geo -marker")
+
+	return err
+}
+
 func main() {
 
 	typePtr := flag.String("query", "combined", "BOLD query type: summary, specimen, sequence, combined, trace")
@@ -46,7 +63,7 @@ func main() {
 		"Valid taxonomic designations: phylum, class, order, family, subfamily, genus, and species"+
 		"Multiple taxa can be specified in a comma delimited list, or by passing a text file (with one taxon per line)")
 
-	idsPtr := flag.String("taxon", "none", "BOLD ID. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs."+
+	idsPtr := flag.String("ids", "none", "BOLD ID. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs."+
 			"Multiple IDs can be specified in a comma delimited list, or by passing a text file (with one ID per line)")
 
 	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs"+
@@ -102,6 +119,12 @@ func main() {
 		"dataType":    *dataTypePtr,
 		"format":      *formatPtr,
 		"marker":      *markerPtr}
+
+	// check to make sure at least one of the required params was passed
+	err := PassedRequired(all_params)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// iterate through the passed params
 	for k, v := range all_params {

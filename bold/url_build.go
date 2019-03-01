@@ -60,7 +60,7 @@ func BoldURL(data_type string, params map[string][]string) string {
 	}
 
 	if url_dtype == "not_specified" {
-		err := "You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace"
+		err := errors.New("You must specify the BOLD query type. Options: summary, specimen, sequence, combined, trace")
 		log.Fatal(err)
 	}
 

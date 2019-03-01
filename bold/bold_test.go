@@ -12,6 +12,7 @@ func TestUrlParamValidate(t *testing.T) {
 	test_summary_bad := "marker"
 
 	test_sequence_good := "bin"
+	test_sequence_good2 := "marker"
 	test_sequence_bad := "format"
 
 	t_sum_good_out := validateParam(test_summary_good, "summary")
@@ -19,6 +20,7 @@ func TestUrlParamValidate(t *testing.T) {
 	t_sum_bad_expected := errors.New("Error! \"marker\" is not a valid paramater for BOLD query of type: summary\nThis flag should be omitted.")
 
 	t_seq_good_out := validateParam(test_sequence_good, "sequence")
+	t_seq_good_out2 := validateParam(test_sequence_good2, "sequence")
 	t_seq_bad_out := validateParam(test_sequence_bad, "sequence")
 	t_seq_bad_expected := errors.New("Error! \"format\" is not a valid paramater for BOLD query of type: sequence\nThis flag should be omitted.")
 
@@ -32,6 +34,10 @@ func TestUrlParamValidate(t *testing.T) {
 
 	if reflect.DeepEqual(t_seq_good_out, nil) != true {
 		t.Errorf("URL param validation of combo: sequence, %v incorrectly returned an error:\n %v ", test_sequence_good, t_seq_good_out)
+	}
+
+	if reflect.DeepEqual(t_seq_good_out2, nil) != true {
+		t.Errorf("URL param validation of combo: sequence, %v incorrectly returned an error:\n %v ", test_sequence_good2, t_seq_good_out2)
 	}
 
 	if reflect.DeepEqual(t_seq_bad_out, t_seq_bad_expected) != true {
