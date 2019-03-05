@@ -59,24 +59,29 @@ func main() {
 
 	outputPtr := flag.String("output", "bold_data.txt", "Output file name.")
 
-	taxonPtr := flag.String("taxon", "none", "Taxonomic designation. Returns all records from matching designation."+
-		"Valid taxonomic designations: phylum, class, order, family, subfamily, genus, and species"+
-		"Multiple taxa can be specified in a comma delimited list, or by passing a text file (with one taxon per line)")
+	taxonPtr := flag.String("taxon", "none", "Taxonomic designation. Returns all records from matching designation.\n"+
+		"Valid taxonomic designations: phylum, class, order, family, subfamily, genus, and species\n"+
+		"Multiple taxa can be specified in a comma delimited list, or by passing a text file (with one taxon per line)\n")
 
-	idsPtr := flag.String("ids", "none", "BOLD ID. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs."+
+	idsPtr := flag.String("ids", "none", "BOLD ID. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs.\n"+
 			"Multiple IDs can be specified in a comma delimited list, or by passing a text file (with one ID per line)")
 
-	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs"+
+	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs\n"+
 			"Multiple markers can be specified in a comma delimited list, or by passing a text file (with one bin per line)")
 
-	containerPtr := flag.String("container", "none", "")
+	containerPtr := flag.String("container", "none", "Return all records from a given BOLD container. Containers include project codes and dataset codes\n"+
+			"Multiple containers can be specified in a comma delimited list, or by passing a text file (with one container per line)")
 
-	researchersPtr := flag.String("researchers", "none", "")
-
-	geoPtr := flag.String("geo", "none", "")
-
-	dataTypePtr := flag.String("dataType", "none", "")
-
+	researchersPtr := flag.String("researchers", "none", "Return all records containing a matching researcher names\n"+
+			"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one researcher per line)")
+	
+	geoPtr := flag.String("geo", "none", "Possible geographic inputs include countries and provinces/states.\n"+
+			"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one location per line)")
+	
+	dataTypePtr := flag.String("dataType", "none", "Returns all records in one of the specified formats. Options are either overview or drill_down (default), which will respectively return:\n"+
+			"drill_down: provides record counts by [BINs, Country, Storing Institution, Species]\n" +
+			"overview: provides the total counts of [BINs, Countries, Storing Institutions, Orders, Families, Genus, Species] found by the query.\n")
+	
 	formatPtr := flag.String("format", "query_dependent", "The output file format. Different options available for different query types listed below. First listed option is the default.\n"+
 		"summary: json, xml\n"+
 		"specimen: tsv, xml json, dwc\n"+
@@ -85,7 +90,7 @@ func main() {
 		"trace: tar\n")
 
 	markerPtr := flag.String("marker", "none", "Barcode marker: returns all specimen records that contain data for the specified barcode marker.\n"+
-		"Options include (but are not limited to): COI-5P, matK, rbcL"+
+		"Options include (but are not limited to): COI-5P, matK, rbcL\n"+
 		"Multiple markers can be specified in a comma delimited list.")
 
 	ioPtr := flag.Bool("print", false, "If this flag is passed, instead of data being output to a file, the query will be returned to standard output.")
