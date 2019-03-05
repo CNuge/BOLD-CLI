@@ -34,23 +34,14 @@ bold-cli -query specimen -output test2.tsv -taxon Aves,Reptilia -geo Florida -fo
 ```
 - Or use multiple arguments for one paramater by passing in a text file, with each option listed on a separate line.
 ```
-bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.txt -geo Florida -format tsv
+bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.txt -geo Ontario -marker COI-5P
 ```
-- Send results to standard output as opposed to files. Can then be piped to other things.
+- Send results to standard output as opposed to files. Can then be piped to other things. Note if you have paramaters with spaces in them (i.e. drosophila melanogaster) put this last in the command query, or a text file for input.
 ```
-bold-cli -query specimen -taxon drosophila melanogaster  -print
+bold-cli -query specimen -print -taxon drosophila melanogaster  
 ```
 - The `-print` flag can be added to a query to send data to standard output instead of to a file. Below is an example use of pipe functionality that counts the number of COI drosophila sequences in the bold database.
 ```
 bold-cli -query sequence -taxon drosophila -marker COI-5P -print | grep -c "^>"
 ```
-
-TODO:
-- add documentation for the command line flags
-- write the readme file and add examples
-- add godocs detail
-
-- Compiling on windows and linux as well, as last step upload a compiled version of each, zipped and labelled.
-	- a version compiled on windows will work without go installed... so compile and ship
-	- or possibly do this: https://golang.org/doc/install/source#environment
 

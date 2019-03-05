@@ -39,7 +39,7 @@ func ReadValues(filename string) []string {
 
 // make sure that at least one of the required paramaters was passed in by the user
 func PassedRequired(all_params map[string]string) error {
-	required_params := []string{"ids", "bin", "container", "researchers", "geo", "marker"}
+	required_params := []string{"ids", "bin", "container", "researchers", "geo", "marker", "taxon"}
 
 	for _, p := range required_params {
 		if all_params[p] != "none" {
@@ -48,7 +48,7 @@ func PassedRequired(all_params map[string]string) error {
 	}
 
 	err := errors.New("Not enough information. You must specify at least one of the following paramaters:\n" +
-		"-ids -bin -container -researchers -geo -marker")
+		"-taxon -ids -bin -container -researchers -geo -marker")
 
 	return err
 }
