@@ -19,7 +19,7 @@ go install github.com/CNuge/BOLD-CLI
 
 ## Example usage
 ```
-bold-cli -o salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
+bold-cli -output salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
 
 bold-cli -query specimen -output test.tsv -taxon Aves -geo Florida -format tsv
 ```
