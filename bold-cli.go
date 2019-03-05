@@ -5,12 +5,12 @@ BOLD-CLI: a command line interface for data retrieval from http://www.boldsystem
 */
 
 import (
+	"errors"
 	"flag"
 	"github.com/CNuge/BOLD-CLI/bold" // "./bold"
 	"io/ioutil"
 	"log"
 	"strings"
-	"errors"
 )
 
 // read in a file with a list of paramater values, each value should
@@ -38,17 +38,17 @@ func ReadValues(filename string) []string {
 }
 
 // make sure that at least one of the required paramaters was passed in by the user
-func PassedRequired(all_params map[string]string) error	{
+func PassedRequired(all_params map[string]string) error {
 	required_params := []string{"ids", "bin", "container", "researchers", "geo", "marker"}
 
-	for _, p := range required_params{
+	for _, p := range required_params {
 		if all_params[p] != "none" {
 			return nil
 		}
 	}
 
-	err := errors.New("Not enough information. You must specify at least one of the following paramaters:\n"+
-						"-ids -bin -container -researchers -geo -marker")
+	err := errors.New("Not enough information. You must specify at least one of the following paramaters:\n" +
+		"-ids -bin -container -researchers -geo -marker")
 
 	return err
 }
@@ -64,24 +64,24 @@ func main() {
 		"Multiple taxa can be specified in a comma delimited list, or by passing a text file (with one taxon per line)\n")
 
 	idsPtr := flag.String("ids", "none", "BOLD ID. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs.\n"+
-			"Multiple IDs can be specified in a comma delimited list, or by passing a text file (with one ID per line)")
+		"Multiple IDs can be specified in a comma delimited list, or by passing a text file (with one ID per line)")
 
 	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs\n"+
-			"Multiple markers can be specified in a comma delimited list, or by passing a text file (with one bin per line)")
+		"Multiple markers can be specified in a comma delimited list, or by passing a text file (with one bin per line)")
 
 	containerPtr := flag.String("container", "none", "Return all records from a given BOLD container. Containers include project codes and dataset codes\n"+
-			"Multiple containers can be specified in a comma delimited list, or by passing a text file (with one container per line)")
+		"Multiple containers can be specified in a comma delimited list, or by passing a text file (with one container per line)")
 
 	researchersPtr := flag.String("researchers", "none", "Return all records containing a matching researcher names\n"+
-			"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one researcher per line)")
-	
+		"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one researcher per line)")
+
 	geoPtr := flag.String("geo", "none", "Possible geographic inputs include countries and provinces/states.\n"+
-			"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one location per line)")
-	
+		"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one location per line)")
+
 	dataTypePtr := flag.String("dataType", "none", "Returns all records in one of the specified formats. Options are either overview or drill_down (default), which will respectively return:\n"+
-			"drill_down: provides record counts by [BINs, Country, Storing Institution, Species]\n" +
-			"overview: provides the total counts of [BINs, Countries, Storing Institutions, Orders, Families, Genus, Species] found by the query.\n")
-	
+		"drill_down: provides record counts by [BINs, Country, Storing Institution, Species]\n"+
+		"overview: provides the total counts of [BINs, Countries, Storing Institutions, Orders, Families, Genus, Species] found by the query.\n")
+
 	formatPtr := flag.String("format", "query_dependent", "The output file format. Different options available for different query types listed below. First listed option is the default.\n"+
 		"summary: json, xml\n"+
 		"specimen: tsv, xml json, dwc\n"+
