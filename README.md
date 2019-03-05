@@ -1,5 +1,4 @@
 # BOLD-CLI
-## ** UNDER CONSTRUCTION **
 ## A command line interface for data retrieval from the barcode of life database
 ## http://www.boldsystems.org
 [![Build Status](https://travis-ci.org/CNuge/BOLD-CLI.svg?branch=master)](https://travis-ci.org/CNuge/BOLD-CLI)	[![GoDoc](https://godoc.org/github.com/CNuge/BOLD-CLI/bold?status.svg)](https://godoc.org/github.com/CNuge/BOLD-CLI/bold)
@@ -10,7 +9,7 @@ BOLD-CLI lets you download specimen and sequence data from the barcode of life d
 
 ## Installation
 
-To use BOLD-CLI, download the executable file (*COMING SOON*) in this repository for your operating system (Windows, Mac and Linux provided). Make sure the executable is located on your [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) or within your working directory and then you should be ready to roll. Test that it is working by running the command: `bold-cli -h` from the command line/command prompt.
+To use BOLD-CLI, download the executable file in this repository for your operating system (Windows, Mac and Linux provided). Make sure the executable is located on your [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) or within your working directory and then you should be ready to roll. Test that it is working by running the command: `bold-cli -h` from the command line/command prompt.
 
 Or if you have go installed on your computer and your GOPATH is properly configured, you can install the program directly from the command line:
 ```
