@@ -35,7 +35,7 @@ bold-cli -query specimen -output test2.tsv -taxon Aves,Reptilia -geo Florida -fo
 ```
 bold-cli -query sequence -output test3.fasta -taxon ./example_data/taxon_test.txt -geo Ontario -marker COI-5P
 ```
-- Send results to standard output as opposed to files. Can then be piped to other things. Note if you have paramaters with spaces in them (i.e. drosophila melanogaster) put this last in the command query, or a text file for input.
+- Send results to standard output as opposed to files. Can then be piped to other things. Note if you have paramaters with spaces in them (i.e. drosophila melanogaster) put this last in the command query, or use a text file format to input the paramaters.
 ```
 bold-cli -query specimen -print -taxon drosophila melanogaster  
 ```
