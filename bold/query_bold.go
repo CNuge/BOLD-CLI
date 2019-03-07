@@ -7,8 +7,9 @@ import (
 	"os"
 )
 
-// change the input to a url built by the url_build functions...
-// this way its general so we can do fasta or the other data types
+// Takes a valid BOLD URL (i.e. built by the BoldURL function) and filename
+// The URL is used to make an http request. The response data from the request 
+// is written to the specified output file.
 func QueryToFile(url string, output string) error {
 
 	//make the file
@@ -34,6 +35,8 @@ func QueryToFile(url string, output string) error {
 	return nil
 }
 
+// Takes a valid BOLD URL (i.e. built by the BoldURL function) and makes an http request.
+// The response data is sent to standard output.
 func QueryToIO(url string) {
 
 	// make the http request

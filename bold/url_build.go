@@ -1,7 +1,6 @@
+// The bold package provides a set of functions for building a URL to interating with the BOLD API (http://www.boldsystems.org/index.php/resources/api?type=webservices),
+// querying BOLD using the constructed URL and sending the output of the query to a file or to standard output.
 package bold
-
-//Description of package
-//
 
 import (
 	"errors"
@@ -19,8 +18,8 @@ var valid_dict = map[string][]string{
 	"trace":    []string{"taxon", "ids", "bin", "container", "institutions", "researchers", "geo", "format", "marker"},
 }
 
-// take a paramater specified and check that it is a valid paramater
-// for the given data type
+// Takes a paramater specified in the paramater map and checks that it is a valid paramater
+// for the given data type of the BOLD query.
 func validateParam(param string, data_type string) error {
 
 	for _, i := range valid_dict[data_type] {
@@ -35,13 +34,17 @@ func validateParam(param string, data_type string) error {
 	return errors.New(err)
 }
 
+// Takes an input string and replaces all spaces with %20
 func urlString(s string) string {
 	return strings.Replace(s, " ", "%20", -1)
 }
 
-// Take the data type and a map of all the url component paramaters
-// validates that the data type and the map paramaters are allowed
-// in combination for the bold data retrieval type
+// Takes the data type and a map of all the url component paramaters.
+// Returns a URL string that can be used to query BOLD.
+// Sorts the paramaters alphabetically then validates that all map 
+// paramaters are allowed for the data type. If valid then any spacesin
+// the paramaters are filled, multiple values for a paramater are combined 
+// into a single string and finally the component of the URL is constructed.
 func BoldURL(data_type string, params map[string][]string) string {
 
 	base := "http://www.boldsystems.org/index.php/API_Public/"
