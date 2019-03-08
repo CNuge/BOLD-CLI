@@ -35,8 +35,8 @@ BOLD-CLI uses the following command line flags to control which data is retrieve
 - `-researcher` Return all records containing a matching researcher name.
 - `-geo` Geographic location. Possible geographic inputs include countries and provinces/states.
 - `-dataType` Returns all records in one of the specified formats. Options are either overview or drill_down (default), which will respectively return:
-		- drill_down: provides record counts by [BINs, Country, Storing Institution, Species]
-		- overview: provides the total counts of [BINs, Countries, Storing Institutions, Orders, Families, Genus, Species] found by the query.
+	- drill_down: provides record counts by [BINs, Country, Storing Institution, Species]
+	- overview: provides the total counts of [BINs, Countries, Storing Institutions, Orders, Families, Genus, Species] found by the query.
 
 - `-print` Return data to standard output instead of to an output file.
 
