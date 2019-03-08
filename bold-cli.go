@@ -69,10 +69,10 @@ func main() {
 	binPtr := flag.String("bin", "none", "Barcode index number. Returns all records in the BINs\n"+
 		"Multiple markers can be specified in a comma delimited list, or by passing a text file (with one bin per line).\n")
 
-	containerPtr := flag.String("container", "none", "Return all records from a given BOLD container. Containers include project codes and dataset codes\n"+
+	containerPtr := flag.String("container", "none", "Return all records from a given BOLD container. Containers include project codes and dataset codes.\n"+
 		"Multiple containers can be specified in a comma delimited list, or by passing a text file (with one container per line).\n")
 
-	researchersPtr := flag.String("researchers", "none", "Return all records containing a matching researcher names\n"+
+	researchersPtr := flag.String("researcher", "none", "Return all records containing a matching researcher name.\n"+
 		"Multiple researchers can be specified in a comma delimited list, or by passing a text file (with one researcher per line).\n")
 
 	geoPtr := flag.String("geo", "none", "Possible geographic inputs include countries and provinces/states.\n"+
