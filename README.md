@@ -19,26 +19,26 @@ go install github.com/CNuge/BOLD-CLI
 ## Command line arguments
 BOLD-CLI uses the following command line flags to control which data is retrieved:
 
-`-query` [The Bold Query type](http://www.boldsystems.org/index.php/resources/api?type=webservices). Options are: summary, specimen, sequence, combined, trace. If no option specified the default is to return the combined (specimen and sequence) format.  
-`-output` The file name that the output data should be saved to.
-`-format` The flag gives the output file format. Different options are available for different query types, and the first listed option is the default for that type. 
+- `-query` [The Bold Query type](http://www.boldsystems.org/index.php/resources/api?type=webservices). Options are: summary, specimen, sequence, combined, trace. If no option specified the default is to return the combined (specimen and sequence) format.  
+- `-output` The file name that the output data should be saved to.
+- `-format` The flag gives the output file format. Different options are available for different query types, and the first listed option is the default for that type. 
 		summary: json, xml
 		specimen: tsv, xml json, dwc
 		sequence: fasta
 		combined: tsv, xml json, dwc
 		trace: tar
-`-bin` [Barcode index number](http://www.boldsystems.org/index.php/Public_BarcodeIndexNumber_Home). Returns all records in the BIN.
-`-taxon` Returns all records from matching designation. Valid taxonomic designations: phylum, class, order, family, subfamily, genus, and species.
-`-marker` Returns all specimen records that contain data for the specified barcode marker.
-`-ids` BOLD IDs. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs.
-`-container` Return all records from a given BOLD container. Containers include project codes and dataset codes.
-`-researcher` Return all records containing a matching researcher name.
-`-geo` Geographic location. Possible geographic inputs include countries and provinces/states.
-`-dataType` Returns all records in one of the specified formats. Options are either overview or drill_down (default), which will respectively return:
+- `-bin` [Barcode index number](http://www.boldsystems.org/index.php/Public_BarcodeIndexNumber_Home). Returns all records in the BIN.
+- `-taxon` Returns all records from matching designation. Valid taxonomic designations: phylum, class, order, family, subfamily, genus, and species.
+- `-marker` Returns all specimen records that contain data for the specified barcode marker.
+- `-ids` BOLD IDs. Valid IDs include: Sample IDs, Process IDs, Museum IDs and Field IDs.
+- `-container` Return all records from a given BOLD container. Containers include project codes and dataset codes.
+- `-researcher` Return all records containing a matching researcher name.
+- `-geo` Geographic location. Possible geographic inputs include countries and provinces/states.
+- `-dataType` Returns all records in one of the specified formats. Options are either overview or drill_down (default), which will respectively return:
 		drill_down: provides record counts by [BINs, Country, Storing Institution, Species]
 		overview: provides the total counts of [BINs, Countries, Storing Institutions, Orders, Families, Genus, Species] found by the query.
 
-`-print` Return data to standard output instead of to an output file.
+- `-print` Return data to standard output instead of to an output file.
 
 For most flags, multiple values can be specified in a comma delimited list or by passing the flag a text file containing the values (one value per line).
 
