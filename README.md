@@ -17,8 +17,8 @@ go get github.com/CNuge/BOLD-CLI
 go install github.com/CNuge/BOLD-CLI
 ```
 ## Command line arguments
-BOLD-CLI uses the following command line flags to control which data is retrieved:
 
+BOLD-CLI uses the following command line flags to control which data is retrieved:
 - `-query` [The Bold Query type](http://www.boldsystems.org/index.php/resources/api?type=webservices). Options are: summary, specimen, sequence, combined, trace. If no option specified the default is to return the combined (specimen and sequence) format.  
 - `-output` The file name that the output data should be saved to.
 - `-format` The flag gives the output file format. Different options are available for different query types, and the first listed option is the default for that type. 
@@ -43,6 +43,7 @@ BOLD-CLI uses the following command line flags to control which data is retrieve
 For most flags, multiple values can be specified in a comma delimited list or by passing the flag a text file containing the values (one value per line).
 
 ## Examples
+
 ```
 bold-cli -output salp_barcodes.fasta -query sequence -taxon salvelinus alpinus
 
@@ -68,4 +69,3 @@ bold-cli -query specimen -print -taxon drosophila melanogaster
 ```
 bold-cli -query sequence -taxon drosophila -marker COI-5P -print | grep -c "^>"
 ```
-
