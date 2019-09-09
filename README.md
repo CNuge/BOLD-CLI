@@ -1,11 +1,11 @@
 # BOLD-CLI
-## A command line interface for data retrieval from the barcode of life database
+## A command line interface for data retrieval from the barcode of life data system
 ## http://www.boldsystems.org
 [![Build Status](https://travis-ci.org/CNuge/BOLD-CLI.svg?branch=master)](https://travis-ci.org/CNuge/BOLD-CLI)	[![GoDoc](https://godoc.org/github.com/CNuge/BOLD-CLI/bold?status.svg)](https://godoc.org/github.com/CNuge/BOLD-CLI/bold)
 
 ## About
 
-BOLD-CLI lets you download specimen and sequence data from the barcode of life database (BOLD) directly from the command line. BOLD-CLI interfaces with the database via the [BOLD API](http://www.boldsystems.org/index.php/resources/api?type=webservices) and allows you to obtain local copies of data without needing to utilize [the public data portal](http://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records). The command line interface provides an efficient means of querying the database and also allows returned data to be directly piped to other UNIX shell commands. 
+BOLD-CLI lets you download specimen and sequence data from the barcode of life data system (BOLD) directly from the command line. BOLD-CLI interfaces with the database via the [BOLD API](http://www.boldsystems.org/index.php/resources/api?type=webservices) and allows you to obtain local copies of data without needing to utilize [the public data portal](http://www.boldsystems.org/index.php/Public_BINSearch?searchtype=records). The command line interface provides an efficient means of querying the database and also allows returned data to be directly piped to other UNIX shell commands. 
 
 ## Installation
 
